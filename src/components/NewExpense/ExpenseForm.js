@@ -4,7 +4,7 @@ import "./ExpenseForm.css";
 const ExpenseForm = (props) => {
   const [userInput, setUserInput] = useState({
     enteredTitle: "",
-    enteredAmmount: "",
+    enteredamount: "",
     enteredDate: "",
   });
 
@@ -22,19 +22,18 @@ const ExpenseForm = (props) => {
     event.preventDefault();
     const expenseData = {
       title: userInput.enteredTitle,
-      ammunt: userInput.enteredAmmount,
+      amount: +userInput.enteredamount,
       date: new Date(userInput.enteredDate),
     };
 
-    console.log("Response: ", expenseData);
-
     setUserInput({
       enteredTitle: "",
-      enteredAmmount: "",
+      enteredamount: "",
       enteredDate: "",
     });
 
     props.onSaveExpenseData(expenseData);
+    props.onCancel(false);
   };
 
   return (
@@ -55,8 +54,8 @@ const ExpenseForm = (props) => {
           min="0.01"
           step="0.01"
           onChange={userInputChangeHandler}
-          name="enteredAmmount"
-          value={userInput.enteredAmmount}
+          name="enteredamount"
+          value={userInput.enteredamount}
         />
       </div>
       <div className="new-expense__controls">
@@ -71,6 +70,7 @@ const ExpenseForm = (props) => {
         />
       </div>
       <div className="new-expense__actions">
+        <button onClick={() => props.onCancel(false)}>Cancelar</button>
         <button type="submit">Agregar Gasto</button>
       </div>
     </form>
