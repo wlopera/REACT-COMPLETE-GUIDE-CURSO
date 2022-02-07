@@ -1,6 +1,7 @@
 import React from "react";
 
 import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 const App = () => {
   const expenses = [
@@ -30,21 +31,27 @@ const App = () => {
     },
   ];
 
-  return React.createElement(
-    "div",
-    {},
-    React.createElement("h1", {}, "Pantalla de gastos"),
-    React.createElement("hr", {}),
-    React.createElement(Expenses, { items: expenses })
-  );
+  const addExpenseHandler = (expense) => {
+    expenses.push(expense);
+    console.log(expenses);
+  };
 
-  // return (
-  //   <div>
-  //     <h1>Pantalla de gastos</h1>
-  //     <hr />
-  //     <Expenses items={expenses} />
-  //   </div>
+  // return React.createElement(
+  //   "div",
+  //   {},
+  //   React.createElement("h1", {}, "Pantalla de gastos"),
+  //   React.createElement("hr", {}),
+  //   React.createElement(Expenses, { items: expenses })
   // );
+
+  return (
+    <div>
+      <h1>Pantalla de gastos</h1>
+      <hr />
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses items={expenses} />
+    </div>
+  );
 };
 
 export default App;
