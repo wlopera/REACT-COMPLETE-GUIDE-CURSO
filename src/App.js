@@ -31,6 +31,11 @@ const App = () => {
     },
   ];
 
+  const addExpenseHandler = (expense) => {
+    expenses.push(expense);
+    console.log(expenses);
+  };
+
   // return React.createElement(
   //   "div",
   //   {},
@@ -43,7 +48,7 @@ const App = () => {
     <div>
       <h1>Pantalla de gastos</h1>
       <hr />
-      <NewExpense />
+      <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses items={expenses} />
     </div>
   );
